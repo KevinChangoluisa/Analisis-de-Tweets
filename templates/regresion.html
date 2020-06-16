@@ -1,0 +1,65 @@
+{% extends "layout.html" %} {% block body %}
+<br>
+<table>
+    <tr style="text-align: center;">
+        <th>
+            <form action="/">
+                <button type="submit" class="btn btn-success">Nueva consulta</button>
+            </form>
+        </th>
+        <th>
+            <form action="/grafica" method="POST">
+                <button type="submit" class="btn btn-success">Gráficas</button>
+            </form>
+        </th>
+        <th>
+            <form action="/Textblob" method="POST">
+                <button type="submit" class="btn btn-success">Textblob</button>
+            </form>
+        </th>
+        <th>
+            <form action="/regre" method="POST">
+                <button type="submit" class="btn btn-success">Regresion logística</button>
+            </form>
+        </th>
+    </tr>
+</table>
+
+
+<br>
+<table class="table table-striped table-hover table-bordered table-sm bg-white">
+    <thead>
+        <tr style="text-align: center;">
+            <th>Id</th>
+            <th>Fecha</th>
+            <th>Tweet</th>
+            <th class="filter">
+                Sentimiento <br>Regresión Logística
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for i in datos %}
+        <tr>
+            <td>{{i.0}}</td>
+            <td>{{i.2}}</td>
+            <td>{{i.3}}</td>
+
+            {%if i.6 == 0%}
+            <td style="text-align: center;">
+                Negativo
+            </td>
+            {% endif %} {%if i.6 == 1%}
+
+            <td style="text-align: center;">
+                Positivo
+            </td>
+            {% endif %}
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+
+
+{% endblock %}

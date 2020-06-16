@@ -1,0 +1,117 @@
+{% extends "layout.html" %} {% block body %}
+<script>
+    $(document).ready(function() {
+        $("#mostar").click(function() {
+            console.log("Se aplasto mostrar");
+            $(".oc").toggle('slow');
+
+        });
+        $("#mostar2").click(function() {
+            console.log("Se aplasto mostrar");
+            $(".oc1").toggle('slow');
+
+        });
+    });
+</script>
+
+<br>
+<table>
+    <tr style="text-align: center;">
+        <th>
+            <form action="/">
+                <button type="submit" class="btn btn-success">Nueva consulta</button>
+            </form>
+        </th>
+        <th>
+            <form action="/grafica" method="POST">
+                <button type="submit" class="btn btn-success">Gráficas</button>
+            </form>
+        </th>
+        <th>
+            <form action="/Textblob" method="POST">
+                <button type="submit" class="btn btn-success">Textblob</button>
+            </form>
+        </th>
+        <th>
+            <form action="/regre" method="POST">
+                <button type="submit" class="btn btn-success">Regresion logística</button>
+            </form>
+        </th>
+    </tr>
+</table>
+
+
+<br>
+<table class="table table-striped table-hover table-bordered table-sm bg-white">
+    <thead>
+        <tr style="text-align: center;">
+            <th>Id</th>
+            <th>Fecha</th>
+            <th>Tweet</th>
+            <th class="filter">
+                Sentimiento <br>Jaccard
+                <br>
+                <input class="btn btn-divnk" type="button" id="mostar" name="mostrar" value="Detalles" />
+            </th>
+            <th class="filter">Sentimiento <br>Coseno
+                <br>
+                <input class="btn btn-divnk" type="button" id="mostar2" name="mostrar2" value="Detalles" />
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for i in datos %}
+        <tr>
+            <td>{{i.0}}</td>
+            <td>{{i.2}}</td>
+            <td>{{i.3}}</td>
+
+            {%if i.4[0] == 'POSITIVO'%}
+            <td bgcolor=#58D68D style="text-align: center;">
+                {{i.4[0]}}
+                <p class="oc" style="display: none">Coeficiente de jaccard positivo: {{i.4[1]}}</p>
+                <p class="oc" style="display: none">Coeficiente de jaccard Negativo: {{i.4[2]}}</p>
+            </td>
+            {% endif %} {%if i.4[0] == 'NEGATIVO'%}
+
+            <td bgcolor=#EC7063 style="text-align: center;">
+                {{i.4[0]}}
+                <p class="oc" style="display: none">Coeficiente de jaccard positivo: {{i.4[1]}}</p>
+                <p class="oc" style="display: none">Coeficiente de jaccard Negativo: {{i.4[2]}}</p>
+            </td>
+            {% endif %} {%if i.4[0] == 'NEUTRO'%}
+
+            <td bgcolor=#F2F3F4 style="text-align: center;">
+                {{i.4[0]}}
+                <p class="oc" style="display: none">Coeficiente de jaccard positivo: {{i.4[1]}}</p>
+                <p class="oc" style="display: none">Coeficiente de jaccard Negativo: {{i.4[2]}}</p>
+            </td>
+            {% endif %} {%if i.5[1] == 'POSITIVO'%}
+            <td bgcolor=#58D68D style="text-align: center;">
+                {{i.5[1]}}
+                <p class="oc1" style="display: none">Similitud coseno positivo: {{i.5[2]}}</p>
+                <p class="oc1" style="display: none">Similitud coseno Negativo: {{i.5[3]}}</p>
+            </td>
+            {% endif %} {%if i.5[1] == 'NEGATIVO'%}
+
+            <td bgcolor=#EC7063 style="text-align: center;">
+                {{i.5[1]}}
+                <p class="oc1" style="display: none">Similitud coseno positivo: {{i.5[2]}}</p>
+                <p class="oc1" style="display: none">Similitud coseno Negativo: {{i.5[3]}}</p>
+            </td>
+            {% endif %} {%if i.5[1] == 'NEUTRO'%}
+
+            <td bgcolor=#F2F3F4 style="text-align: center;">
+                {{i.5[1]}}
+                <p class="oc1" style="display: none">Similitud coseno positivo: {{i.5[2]}}</p>
+                <p class="oc1" style="display: none">Similitud coseno Negativo: {{i.5[3]}}</p>
+            </td>
+            {% endif %}
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+
+
+{% endblock %}

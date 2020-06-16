@@ -1,0 +1,133 @@
+{% extends "layout.html" %} {% block body %}
+<script src="https://code.highcharts.com/highcharts.js"></script>
+<script src="https://code.highcharts.com/modules/exporting.js"></script>
+<script src="https://code.highcharts.com/modules/export-data.js"></script>
+<script src="https://code.highcharts.com/modules/accessibility.js"></script>
+
+<input type="button" class="btn btn-success" onclick="history.back()" name="volver atrás" value="volver atrás">
+<br>
+<br>
+
+<div class="card border-info mb-3">
+    <figure class="highcharts-figure">
+        <div id="container"></div>
+    </figure>
+    {% with datos=datos %}
+    <script>
+        var a = Number('{{datos[0].0}}');
+        var b = Number('{{datos[0].1}}');
+        var c = Number('{{datos[0].2}}');
+        Highcharts.chart('container', {
+            chart: {
+                plotBackgroundColor: null,
+                plotBorderWidth: null,
+                plotShadow: false,
+                type: 'pie'
+            },
+            title: {
+                text: 'Porcentaje de positivos y negativos usando JACCARD'
+            },
+            tooltip: {
+                pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+            },
+            accessibility: {
+                point: {
+                    valueSuffix: '%'
+                }
+            },
+            plotOptions: {
+                pie: {
+                    allowPointSelect: true,
+                    cursor: 'pointer',
+                    dataLabels: {
+                        enabled: true,
+                        format: '<b>{point.name}</b>: {point.percentage:.1f} %'
+                    }
+                }
+            },
+            series: [{
+                name: 'Brands',
+                colorByPoint: true,
+                data: [{
+                    name: 'Positivos',
+                    y: a,
+                    sliced: true,
+                    selected: true,
+                    color: '#58D68D'
+                }, {
+                    name: 'Negativos',
+                    y: b,
+                    color: '#EC7063'
+                }, {
+                    name: 'Neutros',
+                    y: c,
+                    color: '#F2F3F4'
+                }]
+            }]
+        });
+    </script>
+    {% endwith %}
+</div>
+<br>
+<div class="card border-primary mb-3">
+    <figure class="highcharts-figure">
+        <div id="container2"></div>
+    </figure>
+    {% with datos=datos %}
+    <script>
+        var a = Number('{{datos[1].0}}');
+        var b = Number('{{datos[1].1}}');
+        var c = Number('{{datos[1].2}}');
+        Highcharts.chart('container2', {
+            chart: {
+                plotBackgroundColor: null,
+                plotBorderWidth: null,
+                plotShadow: false,
+                type: 'pie'
+            },
+            title: {
+                text: 'Porcentaje de positivos y negativos usando Coseno'
+            },
+            tooltip: {
+                pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+            },
+            accessibility: {
+                point: {
+                    valueSuffix: '%'
+                }
+            },
+            plotOptions: {
+                pie: {
+                    allowPointSelect: true,
+                    cursor: 'pointer',
+                    dataLabels: {
+                        enabled: true,
+                        format: '<b>{point.name}</b>: {point.percentage:.1f} %'
+                    }
+                }
+            },
+            series: [{
+                name: 'Brands',
+                colorByPoint: true,
+                data: [{
+                    name: 'Positivos',
+                    y: a,
+                    sliced: true,
+                    selected: true,
+                    color: '#58D68D'
+                }, {
+                    name: 'Negativos',
+                    y: b,
+                    color: '#EC7063'
+                }, {
+                    name: 'Neutros',
+                    y: c,
+                    color: '#95A5A6'
+                }]
+            }]
+        });
+    </script>
+    {% endwith %}
+
+</div>
+{% endblock %}

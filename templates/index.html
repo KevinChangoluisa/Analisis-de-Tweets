@@ -1,0 +1,97 @@
+ {% extends "layout.html" %} {% block body %}
+<br>
+<script>
+    $(document).ready(function() {
+        $("#mostar").click(function() {
+            console.log("Se aplasto mostrar");
+            $(".online").toggle('slow');
+
+        });
+        $("#mostar2").click(function() {
+            console.log("Se aplasto mostrar");
+            $(".subir").toggle('slow');
+
+        });
+    });
+
+
+
+    extArray = new Array(".csv");
+
+    function LimitAttach(form, file) {
+        allowSubmit = false;
+        if (!file) return;
+        while (file.indexOf("\\") != -1)
+            file = file.slice(file.indexOf("\\") + 1);
+        ext = file.slice(file.indexOf(".")).toLowerCase();
+        for (var i = 0; i < extArray.length; i++) {
+            if (extArray[i] == ext) {
+                allowSubmit = true;
+                break;
+            }
+        }
+        if (allowSubmit) form.submit();
+        else
+            alert("Se permiten únicamente archivos con la extención: " +
+                (extArray.join("  ")) + "\nPor favor, seleccione otro archivo " +
+                "e intente de nuevo.");
+    }
+</script>
+
+<div class="card card-body" style="
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: auto;">
+    <br>
+    <table>
+        <tr style="text-align: center;">
+            <th>
+                <input class="btn btn-divnk" type="button" id="mostar" name="mostrar" value="Busqueda on-line" />
+            </th>
+            <th></th>
+            <th>
+                <input class="btn btn-divnk" type="button" id="mostar2" name="mostrar2" value="Dataset externo" />
+            </th>
+        </tr>
+    </table>
+</div>
+<br><br>
+
+<div class="online" style="display: none">
+    <div class="card card-body">
+        <h4>Ingrese los datos para realizar el analisis de sentimientos.</h4>
+    </div>
+    <br>
+    <br>
+    <div class="card card-body">
+        <form action="/add_query" method="POST" style="text-align: center;">
+            <div class="form-group">
+                <p class="text-info">Ingrese palabras claves para la consulta: </p><input type="text" name="consulta" placeholder="Requerido" required>
+            </div>
+            <div class="form-group">
+                <p class="text-info">Ingrese el número de Tweets: </p><input type="number" name="numero" placeholder="Requerido" min="1" required>
+            </div>
+            <div class="form-group">
+                <button type="submit" class="btn btn-success">Consultar</button>
+            </div>
+        </form>
+    </div>
+
+</div>
+
+
+<div class="subir" style="display: none">
+    <div class="card card-body">
+        <form method="post" action="/upload" enctype="multipart/form-data" name="valida_file" style=" text-align: center;">
+            <input type="file" name="uploadfile" />
+            <input type="button" name="Submit" value="Enviar" onclick="LimitAttach(this.form, this.form.uploadfile.value)">
+
+        </form>
+
+    </div>
+</div>
+
+
+
+{% endblock %}

@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<head>    
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    
+        <script>
+            L_NO_TOUCH = false;
+            L_DISABLE_3D = false;
+        </script>
+    
+    <script src="https://cdn.jsdelivr.net/npm/leaflet@1.6.0/dist/leaflet.js"></script>
+    <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.6.0/dist/leaflet.css"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.css"/>
+    <link rel="stylesheet" href="https://rawcdn.githack.com/python-visualization/folium/master/folium/templates/leaflet.awesome.rotate.css"/>
+    <style>html, body {width: 100%;height: 100%;margin: 0;padding: 0;}</style>
+    <style>#map {position:absolute;top:0;bottom:0;right:0;left:0;}</style>
+    
+            <meta name="viewport" content="width=device-width,
+                initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+            <style>
+                #map_7dc8a2cbcbc941dba029766647fecc0a {
+                    position: relative;
+                    width: 700.0px;
+                    height: 600.0px;
+                    left: 0.0%;
+                    top: 0.0%;
+                }
+            </style>
+        
+</head>
+<body>    
+     
+            <link rel="stylesheet" href="https://bootswatch.com/4/materia/bootstrap.min.css">
+            <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+            <div div class="collapse navbar-collapse" id="navbarColor01">
+                <br>
+                <br>
+                <h1 style="text-align: center;">ANÁLISIS DE SENTIMIENTOS CON TEXTBLOB</h1>
+            </div>
+            <input type="button" class="btn btn-primary" onclick="history.back()" name="volver atrás" value="volver atrás">
+            <div
+                style= "
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    width: auto;">
+                
+    
+            <div style="
+            position: fixed; 
+            bottom: 50px; left: 50px; width: 150px; height: 100px; 
+            border:2px solid grey; z-index:9999; 
+
+            background-color:white;
+            opacity: .50;
+
+            font-size:14px;
+            font-weight: bold;
+
+            ">
+            &nbsp; Leyenda del mapa 
+
+            <br> &nbsp; Negativo &nbsp; <i class="fa fa-circle fa-2x" style="color:red"></i>
+            <br> &nbsp; Positivo &nbsp; <i class="fa fa-circle fa-2x" style="color:green"></i>
+
+            </div> 
+    
+            <div class="folium-map" id="map_7dc8a2cbcbc941dba029766647fecc0a" ></div>
+        
+</body>
+<script>    
+    
+            var map_7dc8a2cbcbc941dba029766647fecc0a = L.map(
+                "map_7dc8a2cbcbc941dba029766647fecc0a",
+                {
+                    center: [-1.684495, -78.873492],
+                    crs: L.CRS.EPSG3857,
+                    zoom: 6.5,
+                    zoomControl: true,
+                    preferCanvas: false,
+                }
+            );
+
+            
+
+        
+    
+            var tile_layer_9e29d8bbddc34586bf3c414e6b5a8fce = L.tileLayer(
+                "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
+                {"attribution": "Data by \u0026copy; \u003ca href=\"http://openstreetmap.org\"\u003eOpenStreetMap\u003c/a\u003e, under \u003ca href=\"http://www.openstreetmap.org/copyright\"\u003eODbL\u003c/a\u003e.", "detectRetina": false, "maxNativeZoom": 18, "maxZoom": 18, "minZoom": 0, "noWrap": false, "opacity": 1, "subdomains": "abc", "tms": false}
+            ).addTo(map_7dc8a2cbcbc941dba029766647fecc0a);
+        
+    
+            var circle_0bcea9b0ac8b4459b6418e9eefbe39bf = L.circle(
+                [-2.973211006491556, -79.07632706154918],
+                {"bubblingMouseEvents": true, "color": "green", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "green", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 1000, "stroke": true, "weight": 3}
+            ).addTo(map_7dc8a2cbcbc941dba029766647fecc0a);
+        
+    
+        var popup_d2f0c763d97b48a39141b74d531c2a38 = L.popup({"maxWidth": "100%"});
+
+        
+            var html_99eeb9b18f2c4cc5b7b6fbf520c72329 = $(`<div id="html_99eeb9b18f2c4cc5b7b6fbf520c72329" style="width: 100.0%; height: 100.0%;">@MashiRafael Felicidades Sr Correa, cuando parecía que perdió el control, otra vez todo está saliendo como quería, hasta parecería que es planeado, por quién mas que la única persona inteligente en medio de esa cloaca. Corrupto pero inteligente. Ojalá regreses narco te espera la cárcel.</div>`)[0];
+            popup_d2f0c763d97b48a39141b74d531c2a38.setContent(html_99eeb9b18f2c4cc5b7b6fbf520c72329);
+        
+
+        circle_0bcea9b0ac8b4459b6418e9eefbe39bf.bindPopup(popup_d2f0c763d97b48a39141b74d531c2a38)
+        ;
+
+        
+    
+    
+            var circle_8f3f6517860a42ff88c0f1e1ea4cde73 = L.circle(
+                [-2.179444482671327, -79.984881569153],
+                {"bubblingMouseEvents": true, "color": "green", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "green", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 1000, "stroke": true, "weight": 3}
+            ).addTo(map_7dc8a2cbcbc941dba029766647fecc0a);
+        
+    
+        var popup_948dd50f1db6471a91947bfb276e4f63 = L.popup({"maxWidth": "100%"});
+
+        
+            var html_dc78e3d28eb34cbbbedf8b6568278a23 = $(`<div id="html_dc78e3d28eb34cbbbedf8b6568278a23" style="width: 100.0%; height: 100.0%;">@fabovillamar EXCLUSIVA  via @YouTube  INSISTO CONMINO A LA FISCALÍA GENERAL DEL ESTADO ECUATORIANO A VERIFICAR LA INFORMACIÓN QUE SE EXPONE EN ESTE VÍDEO QUE NO SOLO INVOLUCRA A RAFAEL CORREA COMO A OTROS EX PRESIDEBTES SINO QUE INVOLUCRA TAMBIÉN AL MISMO PAPA FRANCISCO</div>`)[0];
+            popup_948dd50f1db6471a91947bfb276e4f63.setContent(html_dc78e3d28eb34cbbbedf8b6568278a23);
+        
+
+        circle_8f3f6517860a42ff88c0f1e1ea4cde73.bindPopup(popup_948dd50f1db6471a91947bfb276e4f63)
+        ;
+
+        
+    
+    
+            var circle_568c2b2d1d9445c1b8a0bf2c6eae326e = L.circle(
+                [-0.24534430223194365, -76.73562229516368],
+                {"bubblingMouseEvents": true, "color": "green", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "green", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 1000, "stroke": true, "weight": 3}
+            ).addTo(map_7dc8a2cbcbc941dba029766647fecc0a);
+        
+    
+        var popup_1af1db272c6c4dc6a223bc43ce9e431d = L.popup({"maxWidth": "100%"});
+
+        
+            var html_d029ebf5065948ec960c9cfc474fb4c2 = $(`<div id="html_d029ebf5065948ec960c9cfc474fb4c2" style="width: 100.0%; height: 100.0%;">@MashiRafael Chch Correa  tu mismo le dejas al invalido en el poder ya que ni siquiera gano se fue le sistema y luego gano</div>`)[0];
+            popup_1af1db272c6c4dc6a223bc43ce9e431d.setContent(html_d029ebf5065948ec960c9cfc474fb4c2);
+        
+
+        circle_568c2b2d1d9445c1b8a0bf2c6eae326e.bindPopup(popup_1af1db272c6c4dc6a223bc43ce9e431d)
+        ;
+
+        
+    
+    
+            var circle_b303254047f64307a29ee25cbd687c57 = L.circle(
+                [-2.2545811976363694, -79.96127869785408],
+                {"bubblingMouseEvents": true, "color": "green", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "green", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 1000, "stroke": true, "weight": 3}
+            ).addTo(map_7dc8a2cbcbc941dba029766647fecc0a);
+        
+    
+        var popup_2f6033ad6e8545079253b10f6078ca7a = L.popup({"maxWidth": "100%"});
+
+        
+            var html_e732c689cf9343e1ae1534205f320af7 = $(`<div id="html_e732c689cf9343e1ae1534205f320af7" style="width: 100.0%; height: 100.0%;">@nandofer79 @UioconMontufar @CesarMontufar51 @MoralesFer51 @LoroHomero EXCLUSIVA  via @YouTube  INSISTO CONMINO A LA FISCALÍA GENERAL DEL ESTADO ECUATORIANO A VERIFICAR LA INFORMACIÓN QUE SE EXPONE EN ESTE VÍDEO QUE NO SOLO INVOLUCRA A RAFAEL CORREA COMO A OTROS EX PRESIDEBTES SINO QUE INVOLUCRA TAMBIÉN AL MISMO PAPA FRANCISCO</div>`)[0];
+            popup_2f6033ad6e8545079253b10f6078ca7a.setContent(html_e732c689cf9343e1ae1534205f320af7);
+        
+
+        circle_b303254047f64307a29ee25cbd687c57.bindPopup(popup_2f6033ad6e8545079253b10f6078ca7a)
+        ;
+
+        
+    
+    
+            var circle_d368c86eb46149509d0dafcf15a3b3d1 = L.circle(
+                [-2.2434299397338555, -79.96338178915917],
+                {"bubblingMouseEvents": true, "color": "green", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "green", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 1000, "stroke": true, "weight": 3}
+            ).addTo(map_7dc8a2cbcbc941dba029766647fecc0a);
+        
+    
+        var popup_78ac4e65947745699a4a36757e3a4cbb = L.popup({"maxWidth": "100%"});
+
+        
+            var html_c41708f304f6421dbd820eef1038ad4c = $(`<div id="html_c41708f304f6421dbd820eef1038ad4c" style="width: 100.0%; height: 100.0%;">@UioconMontufar EXCLUSIVA  via @YouTube  INSISTO CONMINO A LA FISCALÍA GENERAL DEL ESTADO ECUATORIANO A VERIFICAR LA INFORMACIÓN QUE SE EXPONE EN ESTE VÍDEO QUE NO SOLO INVOLUCRA A RAFAEL CORREA COMO A OTROS EX PRESIDEBTES SINO QUE INVOLUCRA TAMBIÉN AL MISMO PAPA FRANCISCO</div>`)[0];
+            popup_78ac4e65947745699a4a36757e3a4cbb.setContent(html_c41708f304f6421dbd820eef1038ad4c);
+        
+
+        circle_d368c86eb46149509d0dafcf15a3b3d1.bindPopup(popup_78ac4e65947745699a4a36757e3a4cbb)
+        ;
+
+        
+    
+    
+            var circle_7292e07b03fc44d3b76d4a3bff5689fa = L.circle(
+                [-1.1090749756704743, -80.46164882913092],
+                {"bubblingMouseEvents": true, "color": "green", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "green", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 1000, "stroke": true, "weight": 3}
+            ).addTo(map_7dc8a2cbcbc941dba029766647fecc0a);
+        
+    
+        var popup_f1901484f90343e38c2fb75ee85ebc14 = L.popup({"maxWidth": "100%"});
+
+        
+            var html_e8b9c21dbbcd4816b31f9768afc279e9 = $(`<div id="html_e8b9c21dbbcd4816b31f9768afc279e9" style="width: 100.0%; height: 100.0%;">Ver "Pabel Muñoz: Quieren aplazar fechas electorales para impedir participación de Rafael Correa" en YouTube   Asi mismo es, pero estos sinverguenzas se van a quedar locos,😵porque  les vamos a ganar en una sola vuelta!! 💪💪💪 Y El PUEBLO LO SABE!👏👏</div>`)[0];
+            popup_f1901484f90343e38c2fb75ee85ebc14.setContent(html_e8b9c21dbbcd4816b31f9768afc279e9);
+        
+
+        circle_7292e07b03fc44d3b76d4a3bff5689fa.bindPopup(popup_f1901484f90343e38c2fb75ee85ebc14)
+        ;
+
+        
+    
+    
+            var circle_d35ffdd22830427a93c606c066f38b49 = L.circle(
+                [-0.18234560769650093, -78.49705767839083],
+                {"bubblingMouseEvents": true, "color": "green", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "green", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 1000, "stroke": true, "weight": 3}
+            ).addTo(map_7dc8a2cbcbc941dba029766647fecc0a);
+        
+    
+        var popup_12355e175aab46dea02cf06d1647c104 = L.popup({"maxWidth": "100%"});
+
+        
+            var html_e2a0529ee5794b01bd72fae4b0839c74 = $(`<div id="html_e2a0529ee5794b01bd72fae4b0839c74" style="width: 100.0%; height: 100.0%;">#Ecuador   Moreno fue vicepresidente de Correa 6 años y luego delegado ante NNUU 4 años.   En 3 años ha dicho que no sabía nada que ni vio nada.  Próximamente un vicepresidente nombrado a dedo que será candidato dirá de Moreno que no sabía nada y que no vio nada   déjà vu !</div>`)[0];
+            popup_12355e175aab46dea02cf06d1647c104.setContent(html_e2a0529ee5794b01bd72fae4b0839c74);
+        
+
+        circle_d35ffdd22830427a93c606c066f38b49.bindPopup(popup_12355e175aab46dea02cf06d1647c104)
+        ;
+
+        
+    
+</script>
