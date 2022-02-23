@@ -1,2 +1,3 @@
 # Analisis-de-Tweets
-Analisis de sentimientos de twitter
+Analizador de sentimientos de Twets para Ecuador, mediante el uso de diccionarios de palabras y Distancia Jaccard, Coseno
+
